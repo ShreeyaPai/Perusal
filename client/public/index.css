@@ -1,0 +1,10 @@
+#Login {
+  height: 60%;
+  width: 90vw;
+}
+.bg-image-vertical {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
