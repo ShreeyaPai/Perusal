@@ -18,7 +18,7 @@ function Auth(params) {
   }
   useEffect(() => {
     HandleSetAtHome(false);
-    setUserPresent(true);
+    setUserPresent(false);
   }, []);
   if (atHome) {
     return (
