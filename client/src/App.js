@@ -6,7 +6,7 @@ import Main from "./components/Main";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(null);
-  const email = cookies.username;
+  const username = cookies.username;
   const authToken = cookies.AuthToken;
 
   return (

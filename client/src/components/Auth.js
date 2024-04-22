@@ -1,25 +1,19 @@
 import { Fragment, useEffect, useState } from "react";
-import Login from "./Authentication/Login";
-import Signup from "./Authentication/Signup";
+import Login from "./Authentication/Login.js";
+import Signup from "./Authentication/Signup.js";
 import Home from "./Home";
 
 function Auth(params) {
-  const [userPresent, setUserPresent] = useState(false);
-  const [signupData, setSignUpData] = useState();
-  const [atHome, setAtHome] = useState(true);
-  function HandleSetSignUpData(val) {
-    setSignUpData(val);
-  }
+  const [userPresent, setUserPresent] = useState(true);
+  const [atHome, setAtHome] = useState(false);
+
   function HandleSetUserPresent(val) {
     setUserPresent(val);
   }
   function HandleSetAtHome(val) {
     setAtHome(val);
   }
-  useEffect(() => {
-    HandleSetAtHome(false);
-    setUserPresent(false);
-  }, []);
+
   if (atHome) {
     return (
       <Home PAtHome={HandleSetAtHome} PUserPresent={HandleSetUserPresent} />
@@ -27,10 +21,7 @@ function Auth(params) {
   } else if (!atHome && !userPresent) {
     return (
       <Fragment>
-        <Signup
-          PUserPresent={HandleSetUserPresent}
-          PHSignUpData={HandleSetSignUpData}
-        />
+        <Signup PUserPresent={HandleSetUserPresent} />
       </Fragment>
     );
   } else if (!atHome && userPresent) {
