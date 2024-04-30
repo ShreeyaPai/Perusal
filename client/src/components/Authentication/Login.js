@@ -47,9 +47,9 @@ function Login(params) {
     <MDBContainer>
       <MDBRow className="d-flex justify-content-center align-items-center h-100">
         <MDBCol col="12">
-          <MDBCard
-            className="bg-dark text-white my-5 mx-auto"
-            style={{ borderRadius: "1rem", maxWidth: "1000px" }}
+          <MDBCard id="box"
+            className="text-white my-5 mx-auto"
+            style={{ borderRadius: "1rem", maxWidth: "1000px",backgroundColor: "rgba(0 0 0/50%)"}}
           >
             <div className="cont">
               <div className="login-creds">
@@ -116,7 +116,7 @@ function Login(params) {
                 </MDBCardBody>
               </div>
               <div className="login-img">
-                <img src="https://cdn.sanity.io/images/7p2whiua/production/e9779086ee0438688bf288a4cdcc950fdc986af8-2048x1536.jpg?rect=0,0,2048,1152&w=800&h=300&auto=format" />
+                <img src="https://t3.ftcdn.net/jpg/05/74/72/86/360_F_574728684_voyDBkCWq2cKEd3MDoNE0nQLrWYFVxFh.jpg" height="300px" width="500px" alt="bot waving"/>
               </div>
             </div>
           </MDBCard>
