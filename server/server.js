@@ -34,6 +34,7 @@ db.connect();
 
 // Signup
 app.post("/signup", async (req, res) => {
+  console.log(req.body.username)
   const username = req.body.username;
   const usn = req.body.usn;
   const fname = req.body.fname;
@@ -51,7 +52,7 @@ app.post("/signup", async (req, res) => {
       bcrypt.hash(password, saltRounds, async (err, hash) => {
         if (err) {
           console.log(err);
-          res.status(400).send("Error hashing password");
+          res.status(488).send("Error hashing password");
         } else {
           try {
             const result = await db.query(

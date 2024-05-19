@@ -58,7 +58,7 @@ function Login(params) {
                   <p className="text-white-50 mb-5">Join for all the fun!</p>
 
                   <br></br>
-                  <MDBInput
+                  <MDBInput style={{ color:"white"}}
                     wrapperClass="mb-4 mx-5 w-100"
                     labelClass="text-white"
                     label="Username"
@@ -73,7 +73,7 @@ function Login(params) {
                       });
                     }}
                   />
-                  <MDBInput
+                  <MDBInput style={{ color:"white"}}
                     wrapperClass="mb-4 mx-5 w-100"
                     labelClass="text-white"
                     label="Password"

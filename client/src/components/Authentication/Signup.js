@@ -1,5 +1,8 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import Home from "../Home";
+import { useEffect } from "react";
+import ReactDOM from "react";
+import { useCookies } from "react-cookie";
 import {
   MDBBtn,
   MDBContainer,
@@ -11,7 +14,41 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 
+
 function Signup(params) {
+  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const [Data, setData] = useState({});
+  const [Error, setError] = useState(null);
+  console.log(cookies);
+  async function handleSignup(e) {
+    e.preventDefault();
+    try {
+      const body = Data;
+      console.log(Data);
+      const response = await fetch("http://localhost:5000/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (response.status == 200 && response.ok) {
+        const data = await response.json();
+        setCookie("username", data.username);
+        setCookie("AuthToken", data.token);
+        setError(null);
+        window.location.reload();
+      } else if (response.status == 400) {
+        setError("Username already in use, try logging in");
+        console.log(Error);
+      } else if (response.status == 488) {
+        setError("Enter all field data properly");
+        console.log(Error);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   return (
     <div>
       <MDBContainer>
@@ -25,48 +62,98 @@ function Signup(params) {
                 <h2 className="fw-bold mb-2 text-uppercase">Sign up</h2>
                 <p className="text-white-50 mb-5">Join for all the fun!</p>
 
-                <MDBInput
+                <MDBInput style={{ color:"white"}}
                   wrapperClass="mb-4 mx-5 w-100"
                   labelClass="text-white"
                   label="Username"
-                  id="formControlLg"
+                  id="username"
                   type="text"
                   size="lg"
+                  value={Data.Username}
+                            onChange={(e) => {
+                              setData({
+                                ...Data,
+                                username: e.target.value,
+                              });
+                            }}
                 />
-                <MDBInput
+                <MDBInput style={{ color:"white"}}
                   wrapperClass="mb-4 mx-5 w-100"
                   labelClass="text-white"
                   label="First Name"
-                  id="formControlLg"
+                  id="fname"
                   type="text"
                   size="lg"
+                  value={Data.fname}
+                            onChange={(e) => {
+                              setData({
+                                ...Data,
+                                fname: e.target.value,
+                              });
+                            }}
                 />
-                <MDBInput
+                <MDBInput style={{ color:"white"}}
                   wrapperClass="mb-4 mx-5 w-100"
                   labelClass="text-white"
                   label="Last Name"
-                  id="formControlLg"
+                  id="lname"
                   type="text"
                   size="lg"
+                  value={Data.lname}
+                            onChange={(e) => {
+                              setData({
+                                ...Data,
+                                lname: e.target.value,
+                              });
+                            }}
                 />
-                <MDBInput
+                <MDBInput style={{ color:"white"}}
                   wrapperClass="mb-4 mx-5 w-100"
                   labelClass="text-white"
-                  label="Email"
-                  id="formControlLg"
-                  type="email"
+                  label="USN"
+                  id="usn"
+                  type="text"
                   size="lg"
+                  value={Data.usn}
+                            onChange={(e) => {
+                              setData({
+                                ...Data,
+                                usn: e.target.value,
+                              });
+                            }}
                 />
-                <MDBInput
+                <MDBInput style={{ color:"white"}}
+                  wrapperClass="mb-4 mx-5 w-100"
+                  labelClass="text-white"
+                  label="Phone Number"
+                  id="phno"
+                  type="text"
+                  size="lg"
+                  value={Data.phno}
+                            onChange={(e) => {
+                              setData({
+                                ...Data,
+                                phno: e.target.value,
+                              });
+                            }}
+                />
+                <MDBInput style={{ color:"white"}}
                   wrapperClass="mb-4 mx-5 w-100"
                   labelClass="text-white"
                   label="Password"
-                  id="formControlLg"
+                  id="password"
                   type="password"
                   size="lg"
+                  value={Data.password}
+                            onChange={(e) => {
+                              setData({
+                                ...Data,
+                                password: e.target.value,
+                              });
+                            }}
                 />
-
-                <MDBBtn outline className="mx-2 px-5" color="white" size="lg">
+                  {Error && <p style={{ color: "red" }}>{Error}</p>}
+                <MDBBtn type="submit" onClick={handleSignup} outline className="mx-2 px-5" color="white" size="lg">
                   SIGN UP
                 </MDBBtn>
 

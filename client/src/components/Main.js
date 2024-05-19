@@ -4,6 +4,6 @@ import { Cookies, useCookies } from "react-cookie";
 function Main() {
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const username = cookies.username;
-  return <div>Hello {username}</div>;
+  return <div style={{ color:"white"}}>Hello {username}</div>;
 }
 export default Main;
